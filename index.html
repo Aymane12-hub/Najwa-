@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Najwa ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background: radial-gradient(circle,#1a1a1a,#000);
+    color:white;
+    overflow:hidden;
+}
+
+/* شاشة البداية */
+#welcome{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:10;
+}
+
+#welcome h1{
+    font-size:28px;
+}
+
+#welcome button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    background:#ff4e50;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* المحتوى */
+#main{
+    display:none;
+    text-align:center;
+    padding-top:70px;
+}
+
+.question{
+    font-size:26px;
+}
+
+.btns button{
+    margin:10px;
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.yes{
+    background:#ff4e50;
+    color:white;
+}
+
+.no{
+    background:gray;
+    color:white;
+}
+
+/* الرسالة */
+#message{
+    margin-top:30px;
+    font-size:18px;
+    line-height:1.8;
+    min-height:120px;
+}
+
+/* زر الموسيقى */
+.music-btn{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:20px;
+    background:red;
+    color:white;
+    cursor:pointer;
+}
+
+/* القلوب */
+.heart{
+    position:absolute;
+    color:red;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- شاشة البداية -->
+<div id="welcome">
+    <h1>💖 رسالة خاصة 💖</h1>
+    <button onclick="enter()">دخول</button>
+</div>
+
+<!-- المحتوى -->
+<div id="main">
+
+    <div class="question">واش نتي هي نجوى؟ 😍</div>
+
+    <div class="btns">
+        <button class="yes" onclick="startLove()">نعم ❤️</button>
+        <button class="no" onclick="moveBtn(this)">لا 😅</button>
+    </div>
+
+    <div id="message"></div>
+
+    <button class="music-btn" onclick="playMusic()">
+        🎵 شغلي الأغنية
+    </button>
+
+</div>
+
+<script>
+
+function enter(){
+    document.getElementById("welcome").style.display="none";
+    document.getElementById("main").style.display="block";
+}
+
+/* زر لا كيهرب 😂 */
+function moveBtn(btn){
+    btn.style.position="absolute";
+    btn.style.top=Math.random()*80+"%";
+    btn.style.left=Math.random()*80+"%";
+}
+
+/* رسالة حب تدريجية */
+let text=`
+نجوى ❤️
+
+راكي عزيزة عليا بزاف 💕
+وكنبغيك حب صادق من قلبي 💖
+
+وجودك فحياتي كيخليني فرحان 😊
+وكنتمنا نبقاو ديما مع بعضياتنا 🤍
+
+❤️ من قلبي ليك ❤️
+`;
+
+let i=0;
+
+function startLove(){
+    let msg=document.getElementById("message");
+
+    let interval=setInterval(()=>{
+        msg.innerHTML+=text.charAt(i);
+        i++;
+        if(i>=text.length) clearInterval(interval);
+    },50);
+
+    createHearts();
+}
+
+/* قلوب طايرة */
+function createHearts(){
+    setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(Math.random()*20+10)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),6000);
+    },300);
+}
+
+/* تشغيل الأغنية */
+function playMusic(){
+    window.open("https://www.youtube.com/results?search_query=Bilel+Tacchini+عشقك+ادمان","_blank");
+}
+
+</script>
+
+</body>
+</html>
